@@ -6,7 +6,8 @@ public class Player : MonoBehaviour
 {
     Transform tr;
     Vector2 mousePosition;
-    BoxCollider2D box;
+    CapsuleCollider2D coll;
+    Animator anim;
     public GameManager GM;
 
     public float speed;
@@ -24,7 +25,8 @@ public class Player : MonoBehaviour
     void Start()
     {
         tr = GetComponent<Transform>();
-        box = GetComponent<BoxCollider2D>();
+        coll = GetComponent<CapsuleCollider2D>();
+        anim = GetComponent<Animator>();
         curState = StateID[0];
     }
 
@@ -123,14 +125,16 @@ public class Player : MonoBehaviour
     void Invincibility_On()
     {
         //Invoke("Invincibility_Off", 5.0f);
-        box.enabled = false;
+        coll.enabled = false;
+        anim.SetBool("isNormal", false);
     }
 
     void Invincibility_Off()
     {
         StateInitialization();
         Debug.Log("무적 종료");
-        box.enabled = true;
+        coll.enabled = true;
+        anim.SetBool("isNormal", true);
     }
 
     public void StateInitialization()
