@@ -16,6 +16,8 @@ public class Player : MonoBehaviour
     public bool isPlayArea = true;
     public float LimitY;
     public bool isLimited = false;
+    public bool isLimited_Up = false;
+    public bool isLimited_Down = false;
     string[] StateID= {"Normal", "+5kg", "-5kg", "Invincibility", "Inverse"};
     public string curState;
 
@@ -114,11 +116,21 @@ public class Player : MonoBehaviour
         {
             isPlayArea = false;
             isLimited = true;
+            if (tr.position.y > LimitY)
+            {
+                isLimited_Up = true;
+            }
+            else if (-tr.position.y < -LimitY)
+            {
+                isLimited_Down = true;
+            }
         }
         else if (Mathf.Abs(mouse) < LimitY)
         {
             isPlayArea = true;
             isLimited = false;
+            isLimited_Up = false;
+            isLimited_Down = false;
         }
     }
 

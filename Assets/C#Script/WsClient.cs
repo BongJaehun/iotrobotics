@@ -42,13 +42,15 @@ public class WsClient : MonoBehaviour
     }
     void Update()
     {
-        if (ws == null)
+        if (ws.IsAlive==false)
         {
             return;
         }
         if (pastState!=player.curState)
         {
-            //ws.Send(player.curState);
+            ws.Send(player.curState);
+            //ws.Send((player.isLimited_Up).ToString());
+            //ws.Send((player.isLimited_Down).ToString());
             Debug.Log("send");
             pastState = player.curState;
 

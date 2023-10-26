@@ -142,13 +142,13 @@ public class CreateManager : MonoBehaviour
     {
         if (GM.Playtime >= 50 && isHarderActed_First == false)
         {
-            IntervalSetting_Obstacle -= 0.5f;
+            IntervalSetting_Obstacle -= 0.1f;
             isintervalTimeResetting = true;
             isHarderActed_First = true;
         }
         else if (GM.Playtime >= 95 && isHarderActed_Second == false)
         {
-            IntervalSetting_Obstacle -= 0.5f;
+            IntervalSetting_Obstacle -= 0.1f;
             isintervalTimeResetting = true;
             isHarderActed_Second = true;
         }
