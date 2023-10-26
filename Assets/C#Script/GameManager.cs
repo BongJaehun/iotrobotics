@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public GameObject camera0;
     public CreateManager CM;
     public GameObject DestroyerAll;
-    public GameObject AudioManager;
+    public GameObject OSTManager;
 
     public float curWeight;
     public float originalWeight;
@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
     void Dead()
     {
         DestroyerAll.SetActive(true);
-        AudioManager.SetActive(false);
+        OSTManager.SetActive(false);
         player.Initialization();
         GameOver = true;
         Playtime = 0;
@@ -94,7 +94,7 @@ public class GameManager : MonoBehaviour
     public void GameStart()
     {
         DestroyerAll.SetActive(false);
-        AudioManager.SetActive(true);
+        OSTManager.SetActive(true);
         player.isDead = false;
         GameOver = false;
         GameClear = false;

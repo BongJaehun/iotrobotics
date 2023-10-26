@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     CapsuleCollider2D coll;
     Animator anim;
     public GameManager GM;
+    public AudioManger AM;
 
     public float speed;
     public float PlayerX;
@@ -81,6 +82,15 @@ public class Player : MonoBehaviour
         if ((collision.gameObject.tag == "Obstacle" && curState != "¹«Àû") || collision.gameObject.tag == "Finish")
         {
             isDead = true;
+            //AM.AudioPlay("Die");
+            if (GM.GameClear == true)
+            {
+                AM.AudioPlay("Finish");
+            }
+            else
+            {
+                AM.AudioPlay("Die");
+            }
             time_state_cur = 0;
             if (curState == "Inverse")
             {
@@ -176,5 +186,6 @@ public class Player : MonoBehaviour
                 break;
         }
         curState = ID;
+        AM.AudioPlay(curState);
     }
 }
