@@ -10,6 +10,7 @@ public class CreateManager : MonoBehaviour
     public GameObject Item0_veryhard;
     public GameObject[] CreateArea;
     public GameObject Finish;
+    // public gameobject Player;
     public Player player;
     public GameManager GM;
 
@@ -29,6 +30,7 @@ public class CreateManager : MonoBehaviour
     public bool isHarderActed_First;
     public bool isHarderActed_Second;
 
+
     void Start()
     {
         IntervalSetting_Obstacle_Original = IntervalSetting_Obstacle;
@@ -41,6 +43,12 @@ public class CreateManager : MonoBehaviour
         Create();
         CreateFinish();
         harder();
+
+        //접근해야 하는 input: player의 위치와 중력(player object를 가지고 와서 실시간으로 확인)
+        //호출해야 하는 output: 장애물, item, finish 생성
+        //public static T Instantiate<T>(T original, Vector2 position, Quaternion rotation) where T : Object;
+        //Vector2 position::float x, float y
+        // float y: float 이전 장애물.position.y, float player.gravity, float delta
     }
 
     public void Create()
@@ -63,6 +71,9 @@ public class CreateManager : MonoBehaviour
             {
                 GameObject obstacle = Instantiate(Obstacle, CreateArea[CreateStart + i].transform.position, transform.rotation);
                 ItemArea[CreateStart+i] = false;
+
+                // 이전에 생성된 장애물의 위치 정보를 저장하는 변수 생성
+
                 Rigidbody2D rigid = obstacle.GetComponentInChildren<Rigidbody2D>();
                 rigid.AddForce(Vector2.left * Force, ForceMode2D.Impulse);
             }
