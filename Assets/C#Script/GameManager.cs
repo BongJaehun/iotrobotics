@@ -10,22 +10,28 @@ public class GameManager : MonoBehaviour
     public CreateManager CM;
     public GameObject DestroyerAll;
     public GameObject OSTManager;
+    public GameObject LevelPage;
 
     public float curWeight;
     public float originalWeight;
-    public float deltaWeight;
+    public float deltaWeightPercent;
     public bool isInverse=false;
+    public int LastPlaytime = 0;
     public float Playtime = 0;
     public int FinishTime;
+    public int WeightIncreaseMaxTime;
+    public float MaxWeightByTime;
     public bool GameOver;
     public bool GameClear;
     public bool isWeightReset;
+    
+    float[] weight_level = { 0, 10, 20, 30 };
 
     public float PlayerY;
 
     void Start()
     {
-        curWeight = originalWeight;
+        
     }
 
     // Update is called once per frame
@@ -39,6 +45,15 @@ public class GameManager : MonoBehaviour
         {
             Timer();
         }
+    }
+
+    public void WeightIncreaseByTime(int time)
+    {
+        if (WeightIncreaseMaxTime < time)
+        {
+            return;
+        }
+        curWeight += MaxWeightByTime / WeightIncreaseMaxTime;
     }
 
     void Dead()
@@ -57,13 +72,13 @@ public class GameManager : MonoBehaviour
 
     public void ChangeWeight_Plus()
     {
-        curWeight += deltaWeight;
+        curWeight += curWeight * deltaWeightPercent / 100;
         Debug.Log(curWeight);
         //Invoke("InitializeWeight", 3.0f);
     }
     public void ChangeWeight_Minus()
     {
-        curWeight -= deltaWeight;
+        curWeight -= curWeight * deltaWeightPercent / 100;
         Debug.Log(curWeight);
         //Invoke("InitializeWeight", 3.0f);
     }
@@ -71,7 +86,6 @@ public class GameManager : MonoBehaviour
     public void InitializeWeight()
     {
         curWeight = originalWeight;
-        Debug.Log(curWeight);
         player.StateInitialization();
     }
 
@@ -91,14 +105,22 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void GameStart()
+    public void LevelSetting()
+    {
+        LevelPage.SetActive(true);
+    }
+
+    public void GameStart(int level)
     {
         DestroyerAll.SetActive(false);
+        LevelPage.SetActive(false);
         OSTManager.SetActive(true);
         player.isDead = false;
         GameOver = false;
         GameClear = false;
         isWeightReset = false;
+        originalWeight = weight_level[level];
+        curWeight = originalWeight;
         CM.isFinishCreate = false;
         CM.isHarderActed_First = false;
         CM.isHarderActed_Second = false;
@@ -110,6 +132,11 @@ public class GameManager : MonoBehaviour
         if (GameClear != true)
         {
             Playtime += Time.deltaTime;
+            if (LastPlaytime + 1 <= Playtime)
+            {
+                LastPlaytime = ((int)(Playtime));
+                WeightIncreaseByTime(LastPlaytime);
+            }
         }
     }
 

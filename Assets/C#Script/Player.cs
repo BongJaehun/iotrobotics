@@ -63,7 +63,8 @@ public class Player : MonoBehaviour
         {
             if (curState == "+5kg" || curState == "-5kg")
             {
-                GM.InitializeWeight();
+                //GM.InitializeWeight();
+                StateInitialization();
             }
             else if(curState == "Invincibility")
             {

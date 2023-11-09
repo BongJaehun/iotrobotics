@@ -22,23 +22,23 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        text_PlayTime.text = (Mathf.FloorToInt(GM.Playtime * 100f) / 100f).ToString();
+        text_PlayTime.text = (Mathf.FloorToInt(GM.Playtime * 10f) / 10f).ToString();
         switch (player.curState)
         {
             case "Normal":
                 text_PlayerState.text = "";
                 break;
             case "+5kg":
-                text_PlayerState.text = "무게 증가" + "(" + Mathf.FloorToInt(player.time_state_cur) + " / " + player.time_state_setting + ")";
+                text_PlayerState.text = "Weight Increase";
                 break;
             case "-5kg":
-                text_PlayerState.text = "무게 감소" + "(" + Mathf.FloorToInt(player.time_state_cur) + " / " + player.time_state_setting + ")";
+                text_PlayerState.text = "Weight Decrease";
                 break;
             case "Invincibility":
-                text_PlayerState.text = "무적 타임" + "(" + Mathf.FloorToInt(player.time_state_cur) + " / " + player.time_state_setting + ")";
+                text_PlayerState.text = "Super Time" + "(" + Mathf.FloorToInt(player.time_state_cur) + " / " + player.time_state_setting + ")";
                 break;
             case "Inverse":
-                text_PlayerState.text = "인버스" + "(" + Mathf.FloorToInt(player.time_state_cur) + " / " + player.time_state_setting + ")";
+                text_PlayerState.text = "Inverse" + "(" + Mathf.FloorToInt(player.time_state_cur) + " / " + player.time_state_setting + ")";
                 break;
         }
         ReStartButton_Show();
@@ -59,9 +59,9 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void ReStart()
+    public void ReStart(int levelnum)
     {
-        GM.GameStart();
+        GM.GameStart(levelnum);
         GameOverPack.SetActive(false);
         GameClearPack.SetActive(false);
     }
