@@ -124,7 +124,7 @@ public class GameManager : MonoBehaviour
         CM.isFinishCreate = false;
         CM.isHarderActed_First = false;
         CM.isHarderActed_Second = false;
-        CM.IntervalSetting_Obstacle = CM.IntervalSetting_Obstacle_Original;
+        CM.IntervalSetting_Obstacle_Reset();
     }
 
     public void Timer()

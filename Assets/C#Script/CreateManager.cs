@@ -22,7 +22,12 @@ public class CreateManager : MonoBehaviour
     public float IntervalSetting_Obstacle;
     public float interval_Item;
     public float IntervalSetting_Item;
-    public float IntervalSetting_Obstacle_Original;
+    public float IntervalSetting_Obstacle_Upper;
+    public float IntervalSetting_Obstacle_Down;
+    public float IntervalSetting_Obstacle_Upper_Delta;
+    public float IntervalSetting_Obstacle_Down_Delta;
+    public float hardTime;
+    public float veryhardTime;
     public bool[] ItemArea = {true, true, true, true, true, true, true, true, true, true};
     public int ItemCreatePos;
     public bool isFinishCreate;
@@ -33,7 +38,7 @@ public class CreateManager : MonoBehaviour
 
     void Start()
     {
-        IntervalSetting_Obstacle_Original = IntervalSetting_Obstacle;
+        
     }
 
     // Update is called once per frame
@@ -51,13 +56,18 @@ public class CreateManager : MonoBehaviour
         // float y: float 이전 장애물.position.y, float player.gravity, float delta
     }
 
+    public void IntervalSetting_Obstacle_Reset()
+    {
+        IntervalSetting_Obstacle = Random.Range(IntervalSetting_Obstacle_Down, IntervalSetting_Obstacle_Upper) /10;
+    }
+
     public void Create()
     {
         if (IntervalSetting_Obstacle > interval_Obstacle  || GM.GameClear==true || GM.Playtime> GM.FinishTime-2 || isintervalTimeResetting==true)
         {
             return;
         }
-        
+        IntervalSetting_Obstacle_Reset();
         if (player.isDead == false)
         {
             CreateStart = Random.Range(0, 10);
@@ -106,13 +116,13 @@ public class CreateManager : MonoBehaviour
             return;
         }
 
-        if (GM.Playtime < 50)
+        if (GM.Playtime < hardTime)
         {
             GameObject item = Instantiate(Item0, CreateArea[ItemCreatePos].transform.position, transform.rotation);
             Rigidbody2D rigid = item.GetComponentInChildren<Rigidbody2D>();
             rigid.AddForce(Vector2.left * Force, ForceMode2D.Impulse);
         }
-        else if(GM.Playtime<95)
+        else if(GM.Playtime < veryhardTime)
         {
             Debug.Log("Hard");
             GameObject item_hard = Instantiate(Item0_hard, CreateArea[ItemCreatePos].transform.position, transform.rotation);
@@ -151,15 +161,17 @@ public class CreateManager : MonoBehaviour
 
     public void harder()
     {
-        if (GM.Playtime >= 50 && isHarderActed_First == false)
+        if (GM.Playtime >= hardTime && isHarderActed_First == false)
         {
-            IntervalSetting_Obstacle -= 0.1f;
+            IntervalSetting_Obstacle_Upper -= IntervalSetting_Obstacle_Upper_Delta;
+            IntervalSetting_Obstacle_Down -= IntervalSetting_Obstacle_Down_Delta;
             isintervalTimeResetting = true;
             isHarderActed_First = true;
         }
-        else if (GM.Playtime >= 95 && isHarderActed_Second == false)
+        else if (GM.Playtime >= veryhardTime && isHarderActed_Second == false)
         {
-            IntervalSetting_Obstacle -= 0.1f;
+            IntervalSetting_Obstacle_Upper -= IntervalSetting_Obstacle_Upper_Delta;
+            IntervalSetting_Obstacle_Down -= IntervalSetting_Obstacle_Down_Delta;
             isintervalTimeResetting = true;
             isHarderActed_Second = true;
         }

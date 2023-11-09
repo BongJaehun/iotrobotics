@@ -10,6 +10,7 @@ TagManager:
   - Item
   - CreateArea
   - Item_hard
+  - Item_veryhard
   layers:
   - Default
   - TransparentFX

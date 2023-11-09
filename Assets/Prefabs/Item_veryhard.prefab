@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4758718025633063036}
   m_Layer: 10
   m_Name: Item_veryhard
-  m_TagString: Item_hard
+  m_TagString: Item_veryhard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

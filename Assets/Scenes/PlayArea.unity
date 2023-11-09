@@ -1705,7 +1705,12 @@ MonoBehaviour:
   IntervalSetting_Obstacle: 1
   interval_Item: 0
   IntervalSetting_Item: 4.5
-  IntervalSetting_Obstacle_Original: 0
+  IntervalSetting_Obstacle_Upper: 15
+  IntervalSetting_Obstacle_Down: 10
+  IntervalSetting_Obstacle_Upper_Delta: 3
+  IntervalSetting_Obstacle_Down_Delta: 2
+  hardTime: 10
+  veryhardTime: 20
   ItemArea: 01010101010101010101
   ItemCreatePos: 0
   isFinishCreate: 0
