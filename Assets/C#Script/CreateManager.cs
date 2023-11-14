@@ -28,6 +28,8 @@ public class CreateManager : MonoBehaviour
     public float IntervalSetting_Obstacle_Down_Delta;
     public float hardTime;
     public float veryhardTime;
+    public float ProhibitedAreaUp;
+    public float ProhibitedAreaDown;
     public bool[] ItemArea = {true, true, true, true, true, true, true, true, true, true};
     public int ItemCreatePos;
     public bool isFinishCreate;
@@ -67,7 +69,9 @@ public class CreateManager : MonoBehaviour
         {
             return;
         }
+
         IntervalSetting_Obstacle_Reset();
+
         if (player.isDead == false)
         {
             CreateStart = Random.Range(0, 10);
