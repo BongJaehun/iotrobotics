@@ -10,9 +10,11 @@ public class Player : MonoBehaviour
     Animator anim;
     public GameManager GM;
     public AudioManger AM;
+    public GameObject Ws;
 
     public float speed;
     public float PlayerX;
+    public float PlayerY;
     public bool isDead = false;
     public bool isPlayArea = true;
     public float LimitY;
@@ -21,6 +23,7 @@ public class Player : MonoBehaviour
     public bool isLimited_Down = false;
     string[] StateID= {"Normal", "+5kg", "-5kg", "Invincibility", "Inverse"};
     public string curState;
+    public float k;
 
     public float time_state_cur;
     public float time_state_setting;
@@ -38,6 +41,7 @@ public class Player : MonoBehaviour
     {
         if (isDead == false)
         {
+            //PlayerY = GM.PlayerYCalculate(Ws.RobotAngle, k, GM.RobotArmLength);
             //mousePosition = new Vector2(0, GM.PlayerY);
             mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             MoveLimit(mousePosition.y);

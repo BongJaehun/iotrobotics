@@ -1709,8 +1709,10 @@ MonoBehaviour:
   IntervalSetting_Obstacle_Down: 10
   IntervalSetting_Obstacle_Upper_Delta: 3
   IntervalSetting_Obstacle_Down_Delta: 2
-  hardTime: 10
-  veryhardTime: 20
+  hardTime: 50
+  veryhardTime: 95
+  ProhibitedAreaUp: 0
+  ProhibitedAreaDown: 0
   ItemArea: 01010101010101010101
   ItemCreatePos: 0
   isFinishCreate: 0
@@ -3684,8 +3686,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GM: {fileID: 1854874770}
   AM: {fileID: 1213252392}
+  Ws: {fileID: 0}
   speed: 15
   PlayerX: -6
+  PlayerY: 0
   isDead: 1
   isPlayArea: 1
   LimitY: 4.6
@@ -3693,6 +3697,7 @@ MonoBehaviour:
   isLimited_Up: 0
   isLimited_Down: 0
   curState: 
+  k: 0
   time_state_cur: 0
   time_state_setting: 5
 --- !u!212 &1810367932
@@ -3977,6 +3982,7 @@ MonoBehaviour:
   GameOver: 1
   GameClear: 0
   isWeightReset: 0
+  RobotArmLength: 0
   PlayerY: 0
 --- !u!1 &1931184295
 GameObject:

@@ -40,7 +40,7 @@ public class CreateManager : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -61,6 +61,11 @@ public class CreateManager : MonoBehaviour
     public void IntervalSetting_Obstacle_Reset()
     {
         IntervalSetting_Obstacle = Random.Range(IntervalSetting_Obstacle_Down, IntervalSetting_Obstacle_Upper) /10;
+    }
+
+    public void function()
+    {
+
     }
 
     public void Create()

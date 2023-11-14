@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     public bool GameOver;
     public bool GameClear;
     public bool isWeightReset;
+    public float RobotArmLength;
     
     float[] weight_level = { 0, 10, 20, 30 };
 
@@ -45,6 +46,11 @@ public class GameManager : MonoBehaviour
         {
             Timer();
         }
+    }
+
+    public float PlayerYCalculate(float RobotAngle, float k, float RobotArmLength)
+    {
+        return k * RobotArmLength * RobotAngle * Mathf.PI / 180;
     }
 
     public void WeightIncreaseByTime(int time)
