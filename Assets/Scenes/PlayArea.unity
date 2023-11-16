@@ -3690,6 +3690,7 @@ MonoBehaviour:
   speed: 15
   PlayerX: -6
   PlayerY: 0
+  deltaPlayerY: 0
   isDead: 1
   isPlayArea: 1
   LimitY: 4.6
@@ -3697,7 +3698,7 @@ MonoBehaviour:
   isLimited_Up: 0
   isLimited_Down: 0
   curState: 
-  k: 0
+  k: 10
   time_state_cur: 0
   time_state_setting: 5
 --- !u!212 &1810367932

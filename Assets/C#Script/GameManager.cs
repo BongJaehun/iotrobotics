@@ -67,6 +67,8 @@ public class GameManager : MonoBehaviour
         DestroyerAll.SetActive(true);
         OSTManager.SetActive(false);
         player.Initialization();
+        player.StateInitialization();
+        player.Invincibility_Off();
         GameOver = true;
         Playtime = 0;
         if (isWeightReset==false)
@@ -131,6 +133,7 @@ public class GameManager : MonoBehaviour
         CM.isHarderActed_First = false;
         CM.isHarderActed_Second = false;
         CM.IntervalSetting_Obstacle_Reset();
+        player.PlayerY = 0;
     }
 
     public void Timer()

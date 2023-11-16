@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     public float speed;
     public float PlayerX;
     public float PlayerY;
+    public float deltaPlayerY;
     public bool isDead = false;
     public bool isPlayArea = true;
     public float LimitY;
@@ -41,10 +42,10 @@ public class Player : MonoBehaviour
     {
         if (isDead == false)
         {
-            //PlayerY = GM.PlayerYCalculate(Ws.RobotAngle, k, GM.RobotArmLength);
-            //mousePosition = new Vector2(0, GM.PlayerY);
-            mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            MoveLimit(mousePosition.y);
+            /*
+            Move();
+            Debug.Log(PlayerY);
+            mousePosition = new Vector2(0, PlayerY);
             if (isPlayArea == true)
             {
                 if (GM.isInverse == false)
@@ -55,6 +56,28 @@ public class Player : MonoBehaviour
                 {
                     tr.position = Vector2.MoveTowards(tr.position, new Vector2(PlayerX, -mousePosition.y), speed * Time.deltaTime);
                 }
+            }
+            */
+            PlayerY += Input.GetAxis("Mouse ScrollWheel") * k;
+            if (Mathf.Abs(PlayerY) >= LimitY)
+            {
+                if (PlayerY > 0)
+                {
+                    PlayerY = LimitY;
+                }
+                else
+                {
+                    PlayerY = -LimitY;
+                }
+            }
+
+            if (GM.isInverse == false)
+            {
+                tr.position = Vector2.MoveTowards(tr.position, new Vector2(PlayerX, PlayerY), speed * Time.deltaTime);
+            }
+            else
+            {
+                tr.position = Vector2.MoveTowards(tr.position, new Vector2(PlayerX, -PlayerY), speed * Time.deltaTime);
             }
         }
 
@@ -125,9 +148,12 @@ public class Player : MonoBehaviour
         tr.position = new Vector2(PlayerX, 0);
     }
 
-    void MoveLimit(float mouse)
+    void Move()
     {
-        if (Mathf.Abs(tr.position.y) > LimitY && isLimited == false)
+        //PlayerY += Input.GetAxis("Mouse ScrollWheel") * k;
+        //PlayerY = GM.PlayerYCalculate(Ws.RobotAngle, k, GM.RobotArmLength);
+        PlayerY = Input.mousePosition.y;
+        if (Mathf.Abs(PlayerY) > LimitY && isLimited == false)
         {
             isPlayArea = false;
             isLimited = true;
@@ -139,8 +165,9 @@ public class Player : MonoBehaviour
             {
                 isLimited_Down = true;
             }
+            
         }
-        else if (Mathf.Abs(mouse) < LimitY)
+        else if (Mathf.Abs(PlayerY) < LimitY)
         {
             isPlayArea = true;
             isLimited = false;
@@ -156,10 +183,10 @@ public class Player : MonoBehaviour
         anim.SetBool("isNormal", false);
     }
 
-    void Invincibility_Off()
+    public void Invincibility_Off()
     {
         StateInitialization();
-        Debug.Log("公利 辆丰");
+        //Debug.Log("公利 辆丰");
         coll.enabled = true;
         anim.SetBool("isNormal", true);
     }
