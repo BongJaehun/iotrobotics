@@ -58,7 +58,8 @@ public class Player : MonoBehaviour
                 }
             }
             */
-            PlayerY += Input.GetAxis("Mouse ScrollWheel") * k;
+            deltaPlayerY += Input.GetAxis("Mouse ScrollWheel")*k;
+            PlayerY = GM.PlayerYCalculate(deltaPlayerY, k);
             if (Mathf.Abs(PlayerY) >= LimitY)
             {
                 if (PlayerY > 0)

@@ -28,8 +28,6 @@ public class GameManager : MonoBehaviour
     
     float[] weight_level = { 0, 10, 20, 30 };
 
-    public float PlayerY;
-
     void Start()
     {
         
@@ -48,7 +46,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public float PlayerYCalculate(float RobotAngle, float k, float RobotArmLength)
+    public float PlayerYCalculate(float RobotAngle, float k)
     {
         return k * RobotArmLength * RobotAngle * Mathf.PI / 180;
     }

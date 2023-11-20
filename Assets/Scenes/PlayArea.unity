@@ -1697,7 +1697,8 @@ MonoBehaviour:
   Finish: {fileID: 6810031748113790452, guid: 87efd05f504473b439c7fe9e97ecd38b, type: 3}
   player: {fileID: 1810367931}
   GM: {fileID: 1854874770}
-  CreateStart: 0
+  CSM: {fileID: 2031992328}
+  NotCreateStart: 0
   CreateNum: 0
   isItem: 0
   Force: 10
@@ -1709,9 +1710,10 @@ MonoBehaviour:
   IntervalSetting_Obstacle_Down: 10
   IntervalSetting_Obstacle_Upper_Delta: 3
   IntervalSetting_Obstacle_Down_Delta: 2
+  RandomObstacleAreaUp: 0
+  RandomObstacleAreaDown: 0
   hardTime: 50
   veryhardTime: 95
-  ProhibitedAreaUp: 0
   ProhibitedAreaDown: 0
   ItemArea: 01010101010101010101
   ItemCreatePos: 0
@@ -3838,6 +3840,7 @@ Transform:
   - {fileID: 1053398434}
   - {fileID: 1538624812}
   - {fileID: 1213252391}
+  - {fileID: 2031992327}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3983,8 +3986,7 @@ MonoBehaviour:
   GameOver: 1
   GameClear: 0
   isWeightReset: 0
-  RobotArmLength: 0
-  PlayerY: 0
+  RobotArmLength: 10
 --- !u!1 &1931184295
 GameObject:
   m_ObjectHideFlags: 0
@@ -4123,6 +4125,61 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1 &2031992326
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2031992327}
+  - component: {fileID: 2031992328}
+  m_Layer: 0
+  m_Name: CreateSubManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2031992327
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2031992326}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1849418757}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2031992328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2031992326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8de07fdcdaf916e4c99289bbabfeea6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GM: {fileID: 0}
+  CM: {fileID: 976960427}
+  lastPassageLowerPos: 0
+  maxExpectedTorque: 0
+  twentiesAvgTorque: 0
+  duration: 0
+  k: 0
+  J: 0
+  g: 0
+  upperPosition: 0
+  downPosition: 0
 --- !u!1 &2105993833
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,8 +13,9 @@ public class CreateManager : MonoBehaviour
     // public gameobject Player;
     public Player player;
     public GameManager GM;
+    public CreateSubManager CSM;
 
-    public int CreateStart;
+    public int NotCreateStart;
     public int CreateNum;
     public bool isItem = false;
     public float Force;
@@ -26,9 +27,10 @@ public class CreateManager : MonoBehaviour
     public float IntervalSetting_Obstacle_Down;
     public float IntervalSetting_Obstacle_Upper_Delta;
     public float IntervalSetting_Obstacle_Down_Delta;
+    public int RandomObstacleAreaUp;
+    public int RandomObstacleAreaDown;
     public float hardTime;
     public float veryhardTime;
-    public float ProhibitedAreaUp;
     public float ProhibitedAreaDown;
     public bool[] ItemArea = {true, true, true, true, true, true, true, true, true, true};
     public int ItemCreatePos;
@@ -63,11 +65,6 @@ public class CreateManager : MonoBehaviour
         IntervalSetting_Obstacle = Random.Range(IntervalSetting_Obstacle_Down, IntervalSetting_Obstacle_Upper) /10;
     }
 
-    public void function()
-    {
-
-    }
-
     public void Create()
     {
         if (IntervalSetting_Obstacle > interval_Obstacle  || GM.GameClear==true || GM.Playtime> GM.FinishTime-2 || isintervalTimeResetting==true)
@@ -79,6 +76,8 @@ public class CreateManager : MonoBehaviour
 
         if (player.isDead == false)
         {
+            CSM.CalculationStart();
+            /*
             CreateStart = Random.Range(0, 10);
             CreateNum = Random.Range(1, 11 - CreateStart);
             if (CreateNum <= 3 || (CreateStart==0 && CreateNum==10))
@@ -96,6 +95,53 @@ public class CreateManager : MonoBehaviour
                 Rigidbody2D rigid = obstacle.GetComponentInChildren<Rigidbody2D>();
                 rigid.AddForce(Vector2.left * Force, ForceMode2D.Impulse);
             }
+            */
+
+            for(int i = 0; i < 10; i++)
+            {
+                if(CreateArea[i].transform.position.y < CSM.downPosition || CreateArea[i].transform.position.y > CSM.upperPosition)
+                {
+                    ItemArea[i] = false;
+                    CreateNum++;
+                }
+                else
+                {
+                    if (RandomObstacleAreaUp > i)
+                    {
+                        RandomObstacleAreaUp = i;
+                    }
+
+                    if (RandomObstacleAreaDown < i)
+                    {
+                        RandomObstacleAreaDown = i;
+                    }
+                }
+            }
+
+
+            if (CreateNum < 8)
+            {
+                NotCreateStart = Random.Range(RandomObstacleAreaUp, RandomObstacleAreaDown);
+                CSM.lastPassageLowerPos = CreateArea[NotCreateStart + 1].transform.position.y - 0.5f;
+                for(int i = 0; i < 10; i++)
+                {
+                    if(ItemArea[i]==true && (i!= NotCreateStart || i != NotCreateStart + 1))
+                    {
+                        ItemArea[i] = false;
+                    }
+                }
+            }
+
+            for (int i = 0; i < CreateNum; i++)
+            {
+                if (ItemArea[i] == false)
+                {
+                    GameObject obstacle = Instantiate(Obstacle, CreateArea[i].transform.position, transform.rotation);
+                    Rigidbody2D rigid = obstacle.GetComponentInChildren<Rigidbody2D>();
+                    rigid.AddForce(Vector2.left * Force, ForceMode2D.Impulse);
+                }
+            }
+
             interval_Obstacle = 0;
 
             if (IntervalSetting_Item > interval_Item  || player.curState!= "Normal")
