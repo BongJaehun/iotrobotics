@@ -42,7 +42,8 @@ public class CreateManager : MonoBehaviour
 
     void Start()
     {
-
+        CSM.downPosition = player.transform.position.y - 0.5f;
+        IntervalSetting_Obstacle_Reset();
     }
 
     // Update is called once per frame

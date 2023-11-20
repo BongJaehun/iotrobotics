@@ -4177,7 +4177,7 @@ MonoBehaviour:
   duration: 0
   k: 0
   J: 0
-  g: 0
+  g: 9.8
   upperPosition: 0
   downPosition: 0
 --- !u!1 &2105993833
