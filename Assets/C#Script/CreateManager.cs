@@ -38,11 +38,12 @@ public class CreateManager : MonoBehaviour
     public bool isintervalTimeResetting;
     public bool isHarderActed_First;
     public bool isHarderActed_Second;
-
+    public int BoundaryUp;
+    public int BoundaryDown;
 
     void Start()
     {
-        CSM.downPosition = player.transform.position.y - 0.5f;
+        CSM.lastPassageLowerPos = player.transform.position.y - 0.5f;
         IntervalSetting_Obstacle_Reset();
     }
 
@@ -97,7 +98,7 @@ public class CreateManager : MonoBehaviour
                 rigid.AddForce(Vector2.left * Force, ForceMode2D.Impulse);
             }
             */
-
+            /*
             for(int i = 0; i < 10; i++)
             {
                 if(CreateArea[i].transform.position.y < CSM.downPosition || CreateArea[i].transform.position.y > CSM.upperPosition)
@@ -110,30 +111,62 @@ public class CreateManager : MonoBehaviour
                     if (RandomObstacleAreaUp > i)
                     {
                         RandomObstacleAreaUp = i;
+                        CSM.lastPassageUpperPos = CreateArea[i].transform.position.y + 0.5f;
                     }
 
                     if (RandomObstacleAreaDown < i)
                     {
                         RandomObstacleAreaDown = i;
+                        CSM.lastPassageLowerPos = CreateArea[i].transform.position.y - 0.5f;
+                    }
+                }
+            }
+            */
+            BoundaryUp = ObstacleAreaSetting(CSM.upperPosition);
+            BoundaryDown = ObstacleAreaSetting(CSM.downPosition);
+
+            for (int i=0; i < 10; i++)
+            {
+                if(i < BoundaryUp || i > BoundaryDown)
+                {
+                    ItemArea[i] = false;
+                    CreateNum++;
+                }
+                else
+                {
+                    if (RandomObstacleAreaUp > i)
+                    {
+                        RandomObstacleAreaUp = i;
+                        CSM.lastPassageUpperPos = CreateArea[i].transform.position.y + 0.5f;
+                    }
+
+                    if (RandomObstacleAreaDown < i)
+                    {
+                        RandomObstacleAreaDown = i;
+                        CSM.lastPassageLowerPos = CreateArea[i].transform.position.y - 0.5f;
                     }
                 }
             }
 
-
-            if (CreateNum < 8)
+            if (CreateNum < 7)
             {
-                NotCreateStart = Random.Range(RandomObstacleAreaUp, RandomObstacleAreaDown);
+                NotCreateStart = Random.Range(BoundaryUp, BoundaryDown);
+                CSM.lastPassageUpperPos = CreateArea[NotCreateStart].transform.position.y + 0.5f;
                 CSM.lastPassageLowerPos = CreateArea[NotCreateStart + 1].transform.position.y - 0.5f;
                 for(int i = 0; i < 10; i++)
                 {
-                    if(ItemArea[i]==true && (i!= NotCreateStart || i != NotCreateStart + 1))
+                    if(i== NotCreateStart || i == NotCreateStart + 1)
+                    {
+                        Debug.Log("OK");
+                    }
+                    else
                     {
                         ItemArea[i] = false;
+                        CreateNum++;
                     }
                 }
             }
-
-            for (int i = 0; i < CreateNum; i++)
+            for (int i = 0; i < 10; i++)
             {
                 if (ItemArea[i] == false)
                 {
@@ -142,9 +175,11 @@ public class CreateManager : MonoBehaviour
                     rigid.AddForce(Vector2.left * Force, ForceMode2D.Impulse);
                 }
             }
-
+            //Debug.Log(CreateNum);
+            CreateNum = 0;
             interval_Obstacle = 0;
-
+            RandomObstacleAreaUp = 0;
+            RandomObstacleAreaDown = 0;
             if (IntervalSetting_Item > interval_Item  || player.curState!= "Normal")
             {
                 for (int i = 0; i < 10; i++)
@@ -155,6 +190,19 @@ public class CreateManager : MonoBehaviour
             }
             ItemCreate();
         }
+    }
+
+    int ObstacleAreaSetting(float y)
+    {
+        int index = 0;
+        for(int i = 0; i < 10; i++)
+        {
+            if(CreateArea[i].transform.position.y-0.5f<=y && CreateArea[i].transform.position.y + 0.5f > y)
+            {
+                index = i;
+            }
+        }
+        return index;
     }
 
     void Interval()

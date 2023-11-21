@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public Player player;
     public GameObject camera0;
     public CreateManager CM;
+    public CreateSubManager CSM;
     public GameObject DestroyerAll;
     public GameObject OSTManager;
     public GameObject LevelPage;
@@ -27,6 +28,7 @@ public class GameManager : MonoBehaviour
     public float RobotArmLength;
     
     float[] weight_level = { 0, 10, 20, 30 };
+    float[] torque_level = { 0, 0, 0, 0 };
 
     void Start()
     {
@@ -126,6 +128,7 @@ public class GameManager : MonoBehaviour
         GameClear = false;
         isWeightReset = false;
         originalWeight = weight_level[level];
+        CSM.maxExpectedTorque = torque_level[level];
         curWeight = originalWeight;
         CM.isFinishCreate = false;
         CM.isHarderActed_First = false;

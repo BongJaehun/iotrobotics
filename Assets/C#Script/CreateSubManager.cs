@@ -8,6 +8,7 @@ public class CreateSubManager : MonoBehaviour
     public CreateManager CM;
     
     public float lastPassageLowerPos; //마지막 통과의 하한 위치
+    public float lastPassageUpperPos;
     public float maxExpectedTorque; //최대 예상 토크
     public float twentiesAvgTorque; //20대 초중반의 평균 토크
     public float duration; //통과 시간
@@ -25,9 +26,8 @@ public class CreateSubManager : MonoBehaviour
     public void CalculationStart()
     {
         duration = CM.IntervalSetting_Obstacle;
-        upperPosition = UpperPos(lastPassageLowerPos, maxExpectedTorque, twentiesAvgTorque, duration, k, J);
-        downPosition = DownPos(upperPosition, duration, g);
-
+        upperPosition = UpperPos(lastPassageLowerPos, maxExpectedTorque, twentiesAvgTorque, duration, k * Mathf.PI, J);
+        downPosition = DownPos(lastPassageUpperPos, duration, g);
     }
     static float UpperPos(float lastPassageLowerPos, float maxExpectedTorque, float twentiesAvgTorque, float duration, float k, float J)
     {
@@ -35,6 +35,10 @@ public class CreateSubManager : MonoBehaviour
         float acc = k * angleAcc;
         float deltaDownPos = 0.5f * acc * duration * duration;
         float upperPos = lastPassageLowerPos + deltaDownPos;
+        if (upperPos > 4.5f)
+        {
+            upperPos = 4.5f;
+        }
         return upperPos;
     }
 
@@ -42,6 +46,10 @@ public class CreateSubManager : MonoBehaviour
     {
         float deltaDownPos = 0.5f * g * duration * duration;
         float downPos = lastPassageUpperPos + deltaDownPos;
+        if (downPos < -4.5f)
+        {
+            downPos = -4.5f;
+        }
         return downPos;
     }
 
