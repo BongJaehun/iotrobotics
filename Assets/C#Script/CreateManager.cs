@@ -155,9 +155,9 @@ public class CreateManager : MonoBehaviour
                 CSM.lastPassageLowerPos = CreateArea[NotCreateStart + 1].transform.position.y - 0.5f;
                 for(int i = 0; i < 10; i++)
                 {
-                    if(i== NotCreateStart || i == NotCreateStart + 1)
+                    if(i== NotCreateStart || i == NotCreateStart + 1 || i == NotCreateStart + 2)
                     {
-                        Debug.Log("OK");
+                        ItemArea[i] = true;
                     }
                     else
                     {

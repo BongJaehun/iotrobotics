@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     public bool GameClear;
     public bool isWeightReset;
     public float RobotArmLength;
+    public float RobotAngle;
     
     float[] weight_level = { 0, 10, 20, 30 };
     float[] torque_level = { 0, 0, 0, 0 };
@@ -48,9 +49,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public float PlayerYCalculate(float RobotAngle, float k)
+    public float PlayerYCalculate(float robotangle, float k)
     {
-        return k * RobotArmLength * RobotAngle * Mathf.PI / 180;
+        return k * RobotArmLength * robotangle * Mathf.PI / 180;
     }
 
     public void WeightIncreaseByTime(int time)

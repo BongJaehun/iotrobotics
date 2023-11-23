@@ -38,7 +38,7 @@ public class WsClient : MonoBehaviour
     {
         Debug.Log("주소 :  " + ((WebSocket)sender).Url + ", 데이터 : " + e.Data);
         WsData = e.Data;
-        //GM.PlayerY = float.Parse(WsData);
+        GM.RobotAngle = float.Parse(WsData);
     }
     void Update()
     {
