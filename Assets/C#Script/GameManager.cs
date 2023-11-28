@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     public bool isWeightReset;
     public float RobotArmLength;
     public float RobotAngle;
+    public float Robotpos;
     
     float[] weight_level = { 0, 10, 20, 30 };
     float[] torque_level = { 0, 0, 0, 0 };

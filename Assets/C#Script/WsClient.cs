@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 using WebSocketSharp;
 
 public class WsClient : MonoBehaviour
@@ -10,49 +11,68 @@ public class WsClient : MonoBehaviour
     public GameManager GM;
     public Player player;
 
-    public string pastState;
+    public float pastWeight;
 
-    public string WsData;
-
-    private void Start()
+    public int WsData;
+    void Start()
     {
-        pastState = player.curState;
-        ws = new WebSocket("ws://localhost:7777");
+        pastWeight = GM.curWeight;
+        //ws = new WebSocket("ws://localhost:7777");
+        ws = new WebSocket("ws://arsvivendi.io/ycs1008");
         //서버에서 설정한 포트를 넣어줍니다.
 
+        ws.OnOpen += (sender, e) =>
+        {
+            Debug.Log("Open");
+        };
 
+        ws.OnMessage += Call;
         ws.Connect();
         //연결합니다.
-        ws.OnMessage += Call;
+
+        
         //이벤트 추가
-        /*
-         위랑 같은 것
-        ws.OnMessage += (sender, e) =>
-        {
-            Debug.Log("주소 :  "+((WebSocket)sender).Url+", 데이터 : "+e.Data);
-        };
-         */
+        
+        //위랑 같은 것
+         
     }
 
     void Call(object sender, MessageEventArgs e)
     {
         Debug.Log("주소 :  " + ((WebSocket)sender).Url + ", 데이터 : " + e.Data);
-        WsData = e.Data;
-        GM.RobotAngle = float.Parse(WsData);
+
+        if (e.Data[0] == 'p')
+        {
+            try 
+            { 
+                WsData = Int32.Parse(e.Data.Substring(1, e.Data.Length-1));
+                Debug.Log("Parse Sucess "+WsData);
+            }
+            catch (FormatException)
+            {
+                Debug.Log($"Unable to parse '{e.Data}'");
+            }
+        }
+        else
+        {
+            Debug.Log("Data not start p");
+        }
+        GM.Robotpos = WsData;
     }
     void Update()
     {
-        if (ws.IsAlive==false)
+        if (ws == null)
         {
+            Debug.Log("Not");
             return;
         }
-        if (pastState!=player.curState)
+        if (Mathf.Abs(pastWeight-GM.curWeight)>0.1)
         {
-            ws.Send(player.curState);
+            ws.Send((GM.curWeight).ToString());
             //ws.Send((player.isLimited_Up).ToString());
             //ws.Send((player.isLimited_Down).ToString());
             Debug.Log("send");
-            pastState = player.curState;
+            pastWeight = GM.curWeight;
 
         }
     }

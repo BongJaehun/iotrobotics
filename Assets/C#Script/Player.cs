@@ -58,13 +58,14 @@ public class Player : MonoBehaviour
                 }
             }
             */
-            deltaPlayerY += Input.GetAxis("Mouse ScrollWheel")*k;
-            PlayerY = GM.PlayerYCalculate(deltaPlayerY, k);
+            //deltaPlayerY += Input.GetAxis("Mouse ScrollWheel") * k;
+            //PlayerY = GM.PlayerYCalculate(deltaPlayerY, k);
+            PlayerY = GM.Robotpos * k;
             if (Mathf.Abs(PlayerY) >= LimitY)
             {
                 if (PlayerY > 0)
                 {
-                    PlayerY = LimitY;
+                    PlayerY = LimitY;                
                 }
                 else
                 {
