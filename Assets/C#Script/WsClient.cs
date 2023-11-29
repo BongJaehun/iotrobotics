@@ -14,6 +14,7 @@ public class WsClient : MonoBehaviour
     public float pastWeight;
 
     public int WsData;
+
     void Start()
     {
         pastWeight = GM.curWeight;
@@ -68,12 +69,19 @@ public class WsClient : MonoBehaviour
         }
         if (Mathf.Abs(pastWeight-GM.curWeight)>0.1)
         {
-            ws.Send((GM.curWeight).ToString());
-            //ws.Send((player.isLimited_Up).ToString());
-            //ws.Send((player.isLimited_Down).ToString());
-            Debug.Log("send");
+            ws.Send("t"+(GM.curWeight).ToString());
             pastWeight = GM.curWeight;
 
         }
+    }
+
+    public void SendStart()
+    {
+        ws.Send("start");
+    }
+
+    public void SendEnd()
+    {
+        ws.Send("stop");
     }
 }

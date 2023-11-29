@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public GameObject camera0;
     public CreateManager CM;
     public CreateSubManager CSM;
+    public WsClient Ws;
     public GameObject DestroyerAll;
     public GameObject OSTManager;
     public GameObject LevelPage;
@@ -71,6 +72,7 @@ public class GameManager : MonoBehaviour
         player.Initialization();
         player.StateInitialization();
         player.Invincibility_Off();
+        Ws.SendEnd();
         GameOver = true;
         Playtime = 0;
         if (isWeightReset==false)
@@ -126,6 +128,7 @@ public class GameManager : MonoBehaviour
         LevelPage.SetActive(false);
         OSTManager.SetActive(true);
         player.isDead = false;
+        Ws.SendStart();
         GameOver = false;
         GameClear = false;
         isWeightReset = false;

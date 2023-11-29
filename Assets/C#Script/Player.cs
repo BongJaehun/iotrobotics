@@ -149,7 +149,7 @@ public class Player : MonoBehaviour
     {
         tr.position = new Vector2(PlayerX, 0);
     }
-
+    /*
     void Move()
     {
         //PlayerY += Input.GetAxis("Mouse ScrollWheel") * k;
@@ -177,7 +177,7 @@ public class Player : MonoBehaviour
             isLimited_Down = false;
         }
     }
-
+    */
     void Invincibility_On()
     {
         //Invoke("Invincibility_Off", 5.0f);
