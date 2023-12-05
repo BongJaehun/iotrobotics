@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     Animator anim;
     public GameManager GM;
     public AudioManger AM;
-    public GameObject Ws;
+    public WsClient Ws;
 
     public float speed;
     public float PlayerX;
@@ -59,8 +59,9 @@ public class Player : MonoBehaviour
             }
             */
             //deltaPlayerY += Input.GetAxis("Mouse ScrollWheel") * k;
-            //PlayerY = GM.PlayerYCalculate(deltaPlayerY, k);
-            PlayerY = GM.Robotpos * k;
+            PlayerY = GM.PlayerYCalculate(GM.Robotpos, k);
+            //PlayerY = Input.mousePosition.y;
+            //PlayerY = GM.Robotpos * k;
             if (Mathf.Abs(PlayerY) >= LimitY)
             {
                 if (PlayerY > 0)
@@ -113,6 +114,7 @@ public class Player : MonoBehaviour
         {
             isDead = true;
             //AM.AudioPlay("Die");
+            //Ws.SendEnd();
             if (GM.GameClear == true)
             {
                 AM.AudioPlay("Finish");

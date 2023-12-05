@@ -29,13 +29,15 @@ public class GameManager : MonoBehaviour
     public float RobotArmLength;
     public float RobotAngle;
     public float Robotpos;
-    
-    float[] weight_level = { 0, 10, 20, 30 };
+
+    public bool isStopSend;
+
+    public float[] weight_level;
     float[] torque_level = { 0, 0, 0, 0 };
 
     void Start()
     {
-        
+        curWeight = 0;
     }
 
     // Update is called once per frame
@@ -48,21 +50,23 @@ public class GameManager : MonoBehaviour
         else
         {
             Timer();
+            WeightIncreaseByTime();
         }
     }
 
-    public float PlayerYCalculate(float robotangle, float k)
+    public float PlayerYCalculate(float robotpos, float k)
     {
-        return k * RobotArmLength * robotangle * Mathf.PI / 180;
+        return k * ((robotpos - 50) * 4.6f / 35);
     }
 
-    public void WeightIncreaseByTime(int time)
+    public void WeightIncreaseByTime()
     {
-        if (WeightIncreaseMaxTime < time)
+        if (curWeight >= 1.0f)
         {
+            curWeight = 1.0f;
             return;
         }
-        curWeight += MaxWeightByTime / WeightIncreaseMaxTime;
+        curWeight += MaxWeightByTime / (WeightIncreaseMaxTime *300);
     }
 
     void Dead()
@@ -72,9 +76,13 @@ public class GameManager : MonoBehaviour
         player.Initialization();
         player.StateInitialization();
         player.Invincibility_Off();
-        Ws.SendEnd();
         GameOver = true;
         Playtime = 0;
+        if (isStopSend == false)
+        {
+            Ws.SendEnd();
+            isStopSend = true;
+        }
         if (isWeightReset==false)
         {
             InitializeWeight();
@@ -85,6 +93,10 @@ public class GameManager : MonoBehaviour
     public void ChangeWeight_Plus()
     {
         curWeight += curWeight * deltaWeightPercent / 100;
+        if (curWeight > 1.0f)
+        {
+            curWeight = 1.0f;
+        }
         Debug.Log(curWeight);
         //Invoke("InitializeWeight", 3.0f);
     }
@@ -97,7 +109,7 @@ public class GameManager : MonoBehaviour
 
     public void InitializeWeight()
     {
-        curWeight = originalWeight;
+        curWeight = 0;
         player.StateInitialization();
     }
 
@@ -138,6 +150,7 @@ public class GameManager : MonoBehaviour
         CM.isFinishCreate = false;
         CM.isHarderActed_First = false;
         CM.isHarderActed_Second = false;
+        isStopSend = false;
         CM.IntervalSetting_Obstacle_Reset();
         player.PlayerY = 0;
     }
@@ -150,7 +163,7 @@ public class GameManager : MonoBehaviour
             if (LastPlaytime + 1 <= Playtime)
             {
                 LastPlaytime = ((int)(Playtime));
-                WeightIncreaseByTime(LastPlaytime);
+                //WeightIncreaseByTime(LastPlaytime);
             }
         }
     }

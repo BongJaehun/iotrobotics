@@ -3309,6 +3309,7 @@ MonoBehaviour:
   player: {fileID: 1810367931}
   pastWeight: 0
   WsData: 0
+  time: 0
 --- !u!1 &1612502249
 GameObject:
   m_ObjectHideFlags: 0
@@ -3767,7 +3768,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GM: {fileID: 1854874770}
   AM: {fileID: 1213252392}
-  Ws: {fileID: 0}
+  Ws: {fileID: 1538624813}
   speed: 15
   PlayerX: -6
   PlayerY: 0
@@ -3779,7 +3780,7 @@ MonoBehaviour:
   isLimited_Up: 0
   isLimited_Down: 0
   curState: 
-  k: 0.3
+  k: 1
   time_state_cur: 0
   time_state_setting: 5
 --- !u!212 &1810367932
@@ -4051,6 +4052,7 @@ MonoBehaviour:
   camera0: {fileID: 519420028}
   CM: {fileID: 976960427}
   CSM: {fileID: 2031992328}
+  Ws: {fileID: 1538624813}
   DestroyerAll: {fileID: 2105993833}
   OSTManager: {fileID: 1053398433}
   LevelPage: {fileID: 858705783}
@@ -4061,14 +4063,20 @@ MonoBehaviour:
   LastPlaytime: 0
   Playtime: 0
   FinishTime: 145
-  WeightIncreaseMaxTime: 100
-  MaxWeightByTime: 10
+  WeightIncreaseMaxTime: 30
+  MaxWeightByTime: 0.5
   GameOver: 1
   GameClear: 0
   isWeightReset: 0
   RobotArmLength: 10
   RobotAngle: 0
   Robotpos: 0
+  isStopSend: 0
+  weight_level:
+  - 0
+  - 0.5
+  - 0.5
+  - 0.5
 --- !u!1 &1931184295
 GameObject:
   m_ObjectHideFlags: 0

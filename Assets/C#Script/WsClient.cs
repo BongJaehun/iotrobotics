@@ -15,6 +15,8 @@ public class WsClient : MonoBehaviour
 
     public int WsData;
 
+    public float time;
+
     void Start()
     {
         pastWeight = GM.curWeight;
@@ -47,7 +49,8 @@ public class WsClient : MonoBehaviour
             try 
             { 
                 WsData = Int32.Parse(e.Data.Substring(1, e.Data.Length-1));
-                Debug.Log("Parse Sucess "+WsData);
+                //Debug.Log("Parse Sucess "+WsData);
+                //Debug.Log("PlayerY " + GM.PlayerYCalculate(WsData, 1.0f));
             }
             catch (FormatException)
             {
@@ -67,11 +70,16 @@ public class WsClient : MonoBehaviour
             Debug.Log("Not");
             return;
         }
-        if (Mathf.Abs(pastWeight-GM.curWeight)>0.1)
+        Timer();
+        if (player.isDead != true)
         {
-            ws.Send("t"+(GM.curWeight).ToString());
-            pastWeight = GM.curWeight;
 
+            if (time >= 1 / 60)
+            {
+                ws.Send("t" + (GM.curWeight * 1000).ToString());
+                pastWeight = GM.curWeight;
+                time = 0;
+            }
         }
     }
 
@@ -83,5 +91,13 @@ public class WsClient : MonoBehaviour
     public void SendEnd()
     {
         ws.Send("stop");
+    }
+
+    public void Timer()
+    {
+        if (player.isDead != true)
+        {
+            time += Time.deltaTime;
+        }
     }
 }
