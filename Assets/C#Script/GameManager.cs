@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviour
         player.StateInitialization();
         player.Invincibility_Off();
         GameOver = true;
-        Playtime = 0;
+        //Playtime = 0;
         if (isStopSend == false)
         {
             Ws.SendEnd();
@@ -153,11 +153,12 @@ public class GameManager : MonoBehaviour
         isStopSend = false;
         CM.IntervalSetting_Obstacle_Reset();
         player.PlayerY = 0;
+        Playtime = 0;
     }
 
     public void Timer()
     {
-        if (GameClear != true)
+        if (GameClear != true && GameOver != true)
         {
             Playtime += Time.deltaTime;
             if (LastPlaytime + 1 <= Playtime)
@@ -171,6 +172,11 @@ public class GameManager : MonoBehaviour
     public void Exit()
     {
         Application.Quit();
+    }
+
+    public void GotoMainMenu()
+    {
+        SceneManager.LoadScene("Opening");
     }
 
 }

@@ -42,26 +42,7 @@ public class Player : MonoBehaviour
     {
         if (isDead == false)
         {
-            /*
-            Move();
-            Debug.Log(PlayerY);
-            mousePosition = new Vector2(0, PlayerY);
-            if (isPlayArea == true)
-            {
-                if (GM.isInverse == false)
-                {
-                    tr.position = Vector2.MoveTowards(tr.position, new Vector2(PlayerX, mousePosition.y), speed * Time.deltaTime);
-                }
-                else
-                {
-                    tr.position = Vector2.MoveTowards(tr.position, new Vector2(PlayerX, -mousePosition.y), speed * Time.deltaTime);
-                }
-            }
-            */
-            //deltaPlayerY += Input.GetAxis("Mouse ScrollWheel") * k;
             PlayerY = GM.PlayerYCalculate(GM.Robotpos, k);
-            //PlayerY = Input.mousePosition.y;
-            //PlayerY = GM.Robotpos * k;
             if (Mathf.Abs(PlayerY) >= LimitY)
             {
                 if (PlayerY > 0)

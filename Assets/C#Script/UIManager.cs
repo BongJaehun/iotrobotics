@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour
 {
     public Text text_PlayTime;
     public Text text_PlayerState;
+    public Text text_Playtime;
 
     public GameObject GameOverPack;
     public GameObject GameClearPack;
@@ -55,6 +56,7 @@ public class UIManager : MonoBehaviour
             else
             {
                 GameOverPack.SetActive(true);
+                text_Playtime.text = "PlayTime: " + GM.Playtime.ToString();
             }
         }
     }

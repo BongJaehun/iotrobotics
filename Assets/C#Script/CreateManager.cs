@@ -79,49 +79,6 @@ public class CreateManager : MonoBehaviour
         if (player.isDead == false)
         {
             CSM.CalculationStart();
-            /*
-            CreateStart = Random.Range(0, 10);
-            CreateNum = Random.Range(1, 11 - CreateStart);
-            if (CreateNum <= 3 || (CreateStart==0 && CreateNum==10))
-            {
-                Create();
-                return;
-            }
-            for (int i = 0; i < CreateNum; i++)
-            {
-                GameObject obstacle = Instantiate(Obstacle, CreateArea[CreateStart + i].transform.position, transform.rotation);
-                ItemArea[CreateStart+i] = false;
-
-                // 이전에 생성된 장애물의 위치 정보를 저장하는 변수 생성
-
-                Rigidbody2D rigid = obstacle.GetComponentInChildren<Rigidbody2D>();
-                rigid.AddForce(Vector2.left * Force, ForceMode2D.Impulse);
-            }
-            */
-            /*
-            for(int i = 0; i < 10; i++)
-            {
-                if(CreateArea[i].transform.position.y < CSM.downPosition || CreateArea[i].transform.position.y > CSM.upperPosition)
-                {
-                    ItemArea[i] = false;
-                    CreateNum++;
-                }
-                else
-                {
-                    if (RandomObstacleAreaUp > i)
-                    {
-                        RandomObstacleAreaUp = i;
-                        CSM.lastPassageUpperPos = CreateArea[i].transform.position.y + 0.5f;
-                    }
-
-                    if (RandomObstacleAreaDown < i)
-                    {
-                        RandomObstacleAreaDown = i;
-                        CSM.lastPassageLowerPos = CreateArea[i].transform.position.y - 0.5f;
-                    }
-                }
-            }
-            */
             BoundaryUp = ObstacleAreaSetting(CSM.upperPosition);
             BoundaryDown = ObstacleAreaSetting(CSM.downPosition);
 
