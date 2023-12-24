@@ -4147,6 +4147,7 @@ MonoBehaviour:
   FinishTime: 80
   WeightIncreaseMaxTime: 30
   MaxWeightByTime: 0.5
+  MaxWeightLimit: 0
   GameOver: 1
   GameClear: 0
   isWeightReset: 0
@@ -4164,6 +4165,11 @@ MonoBehaviour:
   - 0
   - 0.35
   - 0.5
+  maxweight_level:
+  - 0
+  - 0
+  - 0.75
+  - 1
 --- !u!1 &1931184295
 GameObject:
   m_ObjectHideFlags: 0

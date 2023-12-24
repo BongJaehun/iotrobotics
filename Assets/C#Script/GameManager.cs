@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     public int FinishTime;
     public int WeightIncreaseMaxTime;
     public float MaxWeightByTime;
+    public float MaxWeightLimit;
     public bool GameOver;
     public bool GameClear;
     public bool isWeightReset;
@@ -34,6 +35,7 @@ public class GameManager : MonoBehaviour
 
     public float[] weight_level;
     public float[] weight_Bytime_level;
+    public float[] maxweight_level;
     float[] torque_level = { 0, 0, 0, 0 };
 
     void Start()
@@ -94,9 +96,9 @@ public class GameManager : MonoBehaviour
     public void ChangeWeight_Plus()
     {
         curWeight += curWeight * deltaWeightPercent / 100;
-        if (curWeight > 1.0f)
+        if (curWeight > MaxWeightLimit)
         {
-            curWeight = 1.0f;
+            curWeight = MaxWeightLimit;
         }
         Debug.Log(curWeight);
         //Invoke("InitializeWeight", 3.0f);
@@ -148,6 +150,7 @@ public class GameManager : MonoBehaviour
         originalWeight = weight_level[level];
         CSM.maxExpectedTorque = torque_level[level];
         MaxWeightByTime = weight_Bytime_level[level];
+        MaxWeightLimit = maxweight_level[level];
         curWeight = originalWeight;
         CM.isFinishCreate = false;
         CM.isHarderActed_First = false;
