@@ -258,7 +258,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 150}
   m_SizeDelta: {x: 960, y: 180}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &65835722
@@ -423,10 +423,10 @@ MonoBehaviour:
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 100
+  m_Text: 
 --- !u!222 &126979242
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1617,8 +1617,8 @@ MonoBehaviour:
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: Main Menu
 --- !u!222 &709655779
@@ -1866,12 +1866,12 @@ MonoBehaviour:
   IntervalSetting_Item: 4.5
   IntervalSetting_Obstacle_Upper: 15
   IntervalSetting_Obstacle_Down: 10
-  IntervalSetting_Obstacle_Upper_Delta: 3
-  IntervalSetting_Obstacle_Down_Delta: 2
+  IntervalSetting_Obstacle_Upper_Delta: 5
+  IntervalSetting_Obstacle_Down_Delta: 3
   RandomObstacleAreaUp: 0
   RandomObstacleAreaDown: 0
-  hardTime: 50
-  veryhardTime: 95
+  hardTime: 30
+  veryhardTime: 60
   ProhibitedAreaDown: 0
   ItemArea: 01010101010101010101
   ItemCreatePos: 0
@@ -1927,7 +1927,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text_PlayTime: {fileID: 1931184296}
   text_PlayerState: {fileID: 143896971}
-  text_Playtime: {fileID: 0}
+  text_Playtime: {fileID: 126979241}
   GameOverPack: {fileID: 425104334}
   GameClearPack: {fileID: 6057763}
   player: {fileID: 1810367931}
@@ -2069,7 +2069,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 192822a0cb6a95741b85aee0f4bf2b69, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 244953adcd3b79442b62790c13a19c97, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -2223,8 +2223,8 @@ MonoBehaviour:
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: Retry
 --- !u!222 &1074037904
@@ -2953,7 +2953,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "LEVEL \u2162"
+  m_Text: Hard
 --- !u!222 &1377607666
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3030,8 +3030,8 @@ MonoBehaviour:
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: Retry
 --- !u!222 &1395556067
@@ -3060,7 +3060,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1418322233
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3212,7 +3212,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1421045245
 MonoBehaviour:
@@ -3518,8 +3518,8 @@ MonoBehaviour:
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: Main Menu
 --- !u!222 &1716895391
@@ -3567,7 +3567,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -240}
+  m_AnchoredPosition: {x: 0, y: -150}
   m_SizeDelta: {x: 960, y: 180}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1750147076
@@ -3700,7 +3700,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1775598639
 MonoBehaviour:
@@ -3776,7 +3776,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1806335223
 MonoBehaviour:
@@ -4077,7 +4077,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "LEVEL \u2161"
+  m_Text: Normal
 --- !u!222 &1851641073
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4140,11 +4140,11 @@ MonoBehaviour:
   LevelPage: {fileID: 858705783}
   curWeight: 0
   originalWeight: 10
-  deltaWeightPercent: 10
+  deltaWeightPercent: 50
   isInverse: 0
   LastPlaytime: 0
   Playtime: 0
-  FinishTime: 145
+  FinishTime: 80
   WeightIncreaseMaxTime: 30
   MaxWeightByTime: 0.5
   GameOver: 1
@@ -4156,8 +4156,13 @@ MonoBehaviour:
   isStopSend: 0
   weight_level:
   - 0
-  - 0.3
+  - 0
   - 0.4
+  - 0.5
+  weight_Bytime_level:
+  - 0
+  - 0
+  - 0.35
   - 0.5
 --- !u!1 &1931184295
 GameObject:

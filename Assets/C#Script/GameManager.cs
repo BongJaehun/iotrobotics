@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
     public bool isStopSend;
 
     public float[] weight_level;
+    public float[] weight_Bytime_level;
     float[] torque_level = { 0, 0, 0, 0 };
 
     void Start()
@@ -56,7 +57,7 @@ public class GameManager : MonoBehaviour
 
     public float PlayerYCalculate(float robotpos, float k)
     {
-        return k * ((robotpos - 50) * 4.6f / 35);
+        return k * ((robotpos - 50) * 4.6f / 35) / 10;
     }
 
     public void WeightIncreaseByTime()
@@ -146,6 +147,7 @@ public class GameManager : MonoBehaviour
         isWeightReset = false;
         originalWeight = weight_level[level];
         CSM.maxExpectedTorque = torque_level[level];
+        MaxWeightByTime = weight_Bytime_level[level];
         curWeight = originalWeight;
         CM.isFinishCreate = false;
         CM.isHarderActed_First = false;

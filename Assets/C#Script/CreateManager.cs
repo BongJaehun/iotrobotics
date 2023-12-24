@@ -40,6 +40,7 @@ public class CreateManager : MonoBehaviour
     public bool isHarderActed_Second;
     public int BoundaryUp;
     public int BoundaryDown;
+    int createNum_limit = 7;
 
     void Start()
     {
@@ -54,12 +55,6 @@ public class CreateManager : MonoBehaviour
         Create();
         CreateFinish();
         harder();
-
-        //접근해야 하는 input: player의 위치와 중력(player object를 가지고 와서 실시간으로 확인)
-        //호출해야 하는 output: 장애물, item, finish 생성
-        //public static T Instantiate<T>(T original, Vector2 position, Quaternion rotation) where T : Object;
-        //Vector2 position::float x, float y
-        // float y: float 이전 장애물.position.y, float player.gravity, float delta
     }
 
     public void IntervalSetting_Obstacle_Reset()
@@ -69,7 +64,7 @@ public class CreateManager : MonoBehaviour
 
     public void Create()
     {
-        if (IntervalSetting_Obstacle > interval_Obstacle  || GM.GameClear==true || GM.Playtime> GM.FinishTime-2 || isintervalTimeResetting==true)
+        if (IntervalSetting_Obstacle > interval_Obstacle  || GM.GameClear==true || GM.Playtime> GM.FinishTime-2 || isintervalTimeResetting==true || GM.GameOver==true || GM.Playtime <= 3.0f)
         {
             return;
         }
@@ -228,6 +223,7 @@ public class CreateManager : MonoBehaviour
             IntervalSetting_Obstacle_Down -= IntervalSetting_Obstacle_Down_Delta;
             isintervalTimeResetting = true;
             isHarderActed_First = true;
+            createNum_limit ++;
         }
         else if (GM.Playtime >= veryhardTime && isHarderActed_Second == false)
         {
