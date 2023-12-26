@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
 
     public bool isStopSend;
     public bool ishardlevel;
+    public bool isOpen;
 
     public float[] weight_level;
     public float[] weight_Bytime_level;
@@ -42,6 +43,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         curWeight = 0;
+        isOpen = true;
     }
 
     // Update is called once per frame
@@ -49,6 +51,10 @@ public class GameManager : MonoBehaviour
     {
         if (player.isDead)
         {
+            if (isOpen == true)
+            {
+                return;
+            }
             Dead();
         }
         else
@@ -160,8 +166,10 @@ public class GameManager : MonoBehaviour
         CM.IntervalSetting_Obstacle_Reset();
         player.PlayerY = 0;
         Playtime = 0;
+        isOpen = false;
         if (level == 3)
         {
+            //Debug.Log("ishard");
             ishardlevel = true;
         }
         else

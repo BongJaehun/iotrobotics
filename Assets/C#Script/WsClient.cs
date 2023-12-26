@@ -21,7 +21,8 @@ public class WsClient : MonoBehaviour
     {
         pastWeight = GM.curWeight;
         //ws = new WebSocket("ws://localhost:7777");
-        ws = new WebSocket("ws://arsvivendi.io/ycs1008");
+        //ws = new WebSocket("ws://arsvivendi.io/ycs1008");
+        ws = new WebSocket("ws://106.244.237.103:60006");
         //서버에서 설정한 포트를 넣어줍니다.
 
         ws.OnOpen += (sender, e) =>

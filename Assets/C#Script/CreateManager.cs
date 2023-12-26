@@ -64,7 +64,7 @@ public class CreateManager : MonoBehaviour
 
     public void Create()
     {
-        if (IntervalSetting_Obstacle > interval_Obstacle  || GM.GameClear==true || GM.Playtime> GM.FinishTime-2 || isintervalTimeResetting==true || GM.GameOver==true || GM.Playtime <= 3.0f)
+        if (IntervalSetting_Obstacle > interval_Obstacle  || (GM.GameClear==true && GM.ishardlevel==false&& GM.Playtime > GM.FinishTime - 2) || isintervalTimeResetting==true || GM.GameOver==true || GM.Playtime <= 1.5f)
         {
             return;
         }
@@ -100,7 +100,7 @@ public class CreateManager : MonoBehaviour
                 }
             }
 
-            if (CreateNum < 7)
+            if (CreateNum < createNum_limit)
             {
                 NotCreateStart = Random.Range(BoundaryUp, BoundaryDown);
                 CSM.lastPassageUpperPos = CreateArea[NotCreateStart].transform.position.y + 0.5f;
@@ -202,7 +202,7 @@ public class CreateManager : MonoBehaviour
 
     public void CreateFinish()
     {
-        if (GM.Playtime > GM.FinishTime)
+        if (GM.Playtime > GM.FinishTime && GM.ishardlevel==false)
         {
             if (isFinishCreate == false)
             {
@@ -223,7 +223,7 @@ public class CreateManager : MonoBehaviour
             IntervalSetting_Obstacle_Down -= IntervalSetting_Obstacle_Down_Delta;
             isintervalTimeResetting = true;
             isHarderActed_First = true;
-            createNum_limit ++;
+            //createNum_limit ++;
         }
         else if (GM.Playtime >= veryhardTime && isHarderActed_Second == false)
         {
