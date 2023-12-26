@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour
     public Text text_PlayTime;
     public Text text_PlayerState;
     public Text text_Playtime;
+    public Text text_Weight;
 
     public GameObject GameOverPack;
     public GameObject GameClearPack;
@@ -24,6 +25,7 @@ public class UIManager : MonoBehaviour
     void Update()
     {
         text_PlayTime.text = (Mathf.FloorToInt(GM.Playtime * 10f) / 10f).ToString();
+        text_Weight.text = (GM.curWeight * 100).ToString() + "%";
         switch (player.curState)
         {
             case "Normal":

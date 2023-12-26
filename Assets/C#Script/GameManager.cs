@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
     public float Robotpos;
 
     public bool isStopSend;
+    public bool ishardlevel;
 
     public float[] weight_level;
     public float[] weight_Bytime_level;
@@ -59,7 +60,7 @@ public class GameManager : MonoBehaviour
 
     public float PlayerYCalculate(float robotpos, float k)
     {
-        return k * ((robotpos - 50) * 4.6f / 35) / 10;
+        return k * ((robotpos / 10.0f - 50) * 4.6f / 35);
     }
 
     public void WeightIncreaseByTime()
@@ -159,6 +160,14 @@ public class GameManager : MonoBehaviour
         CM.IntervalSetting_Obstacle_Reset();
         player.PlayerY = 0;
         Playtime = 0;
+        if (level == 3)
+        {
+            ishardlevel = true;
+        }
+        else
+        {
+            ishardlevel = false;
+        }
     }
 
     public void Timer()
