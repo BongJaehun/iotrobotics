@@ -25,7 +25,7 @@ public class UIManager : MonoBehaviour
     void Update()
     {
         text_PlayTime.text = (Mathf.FloorToInt(GM.Playtime * 10f) / 10f).ToString();
-        text_Weight.text = (GM.curWeight * 100).ToString() + "%";
+        text_Weight.text = ((Mathf.FloorToInt(GM.curWeight * 100f) / 100f) * 100).ToString() + "%";
         switch (player.curState)
         {
             case "Normal":

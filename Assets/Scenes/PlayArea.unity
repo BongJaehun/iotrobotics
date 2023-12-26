@@ -1947,8 +1947,8 @@ MonoBehaviour:
   IntervalSetting_Item: 4.5
   IntervalSetting_Obstacle_Upper: 15
   IntervalSetting_Obstacle_Down: 10
-  IntervalSetting_Obstacle_Upper_Delta: 4
-  IntervalSetting_Obstacle_Down_Delta: 3
+  IntervalSetting_Obstacle_Upper_Delta: 3
+  IntervalSetting_Obstacle_Down_Delta: 2
   RandomObstacleAreaUp: 0
   RandomObstacleAreaDown: 0
   hardTime: 30
@@ -4242,17 +4242,17 @@ MonoBehaviour:
   weight_level:
   - 0
   - 0
-  - 0.5
+  - 0.4
   - 0.5
   weight_Bytime_level:
   - 0
   - 0
-  - 0.25
+  - 0.2
   - 0.5
   maxweight_level:
   - 0
   - 0
-  - 0.75
+  - 0.6
   - 1
 --- !u!1 &1931184295
 GameObject:
