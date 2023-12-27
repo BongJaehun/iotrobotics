@@ -367,7 +367,7 @@ GameObject:
   - component: {fileID: 126979242}
   - component: {fileID: 126979241}
   m_Layer: 5
-  m_Name: Text_Playtime
+  m_Name: Text_PlayTime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2009,7 +2009,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text_PlayTime: {fileID: 1931184296}
   text_PlayerState: {fileID: 143896971}
-  text_Playtime: {fileID: 126979241}
+  text_PlayTime_GameOver: {fileID: 126979241}
   text_Weight: {fileID: 860793010}
   GameOverPack: {fileID: 425104334}
   GameClearPack: {fileID: 6057763}

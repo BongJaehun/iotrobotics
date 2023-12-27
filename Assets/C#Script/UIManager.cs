@@ -7,7 +7,7 @@ public class UIManager : MonoBehaviour
 {
     public Text text_PlayTime;
     public Text text_PlayerState;
-    public Text text_Playtime;
+    public Text text_PlayTime_GameOver;
     public Text text_Weight;
 
     public GameObject GameOverPack;
@@ -58,7 +58,7 @@ public class UIManager : MonoBehaviour
             else
             {
                 GameOverPack.SetActive(true);
-                text_Playtime.text = "PlayTime: " + GM.Playtime.ToString();
+                text_PlayTime_GameOver.text = "PlayTime: " + (Mathf.FloorToInt(GM.Playtime * 100f) / 100f).ToString();
             }
         }
     }
