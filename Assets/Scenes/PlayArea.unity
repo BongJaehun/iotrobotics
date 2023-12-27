@@ -4304,7 +4304,7 @@ MonoBehaviour:
   LastPlaytime: 0
   Playtime: 0
   FinishTime: 40
-  WeightIncreaseMaxTime: 15
+  WeightIncreaseMaxTime: 25
   MaxWeightByTime: 0.5
   MaxWeightLimit: 0
   GameOver: 0
