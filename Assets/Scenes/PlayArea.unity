@@ -4299,7 +4299,7 @@ MonoBehaviour:
   LevelPage: {fileID: 858705783}
   curWeight: 0
   originalWeight: 10
-  deltaWeightPercent: 50
+  deltaWeightPercent: 40
   isInverse: 0
   LastPlaytime: 0
   Playtime: 0
@@ -4313,6 +4313,7 @@ MonoBehaviour:
   RobotArmLength: 10
   RobotAngle: 0
   Robotpos: 0
+  Level: 0
   isStopSend: 0
   ishardlevel: 0
   isOpen: 0

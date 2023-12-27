@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
     public float RobotArmLength;
     public float RobotAngle;
     public float Robotpos;
+    public int Level;
 
     public bool isStopSend;
     public bool ishardlevel;
@@ -112,7 +113,11 @@ public class GameManager : MonoBehaviour
     }
     public void ChangeWeight_Minus()
     {
-        curWeight -= curWeight * deltaWeightPercent / 100;
+        curWeight -= deltaWeightPercent / 100;
+        if(curWeight< weight_level[Level])
+        {
+            curWeight = weight_level[Level];
+        }
         Debug.Log(curWeight);
         //Invoke("InitializeWeight", 3.0f);
     }
@@ -167,6 +172,7 @@ public class GameManager : MonoBehaviour
         player.PlayerY = 0;
         Playtime = 0;
         isOpen = false;
+        Level = level;
         if (level == 3)
         {
             //Debug.Log("ishard");

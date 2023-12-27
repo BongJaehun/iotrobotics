@@ -107,14 +107,35 @@ public class CreateManager : MonoBehaviour
                 CSM.lastPassageLowerPos = CreateArea[NotCreateStart + 1].transform.position.y - 0.5f;
                 for(int i = 0; i < 10; i++)
                 {
-                    if(i== NotCreateStart || i == NotCreateStart + 1 || i == NotCreateStart + 2)
+                    if (GM.Playtime > veryhardTime)
                     {
-                        ItemArea[i] = true;
+                        if (i == NotCreateStart || i == NotCreateStart + 1)
+                        {
+                            ItemArea[i] = true;
+                        }
+                        else
+                        {
+                            ItemArea[i] = false;
+                            CreateNum++;
+                        }
+
+                        if (NotCreateStart == 9)
+                        {
+                            ItemArea[NotCreateStart - 1] = true;
+                            CreateNum--;
+                        }
                     }
                     else
                     {
-                        ItemArea[i] = false;
-                        CreateNum++;
+                        if (i == NotCreateStart || i == NotCreateStart + 1 || i == NotCreateStart - 1)
+                        {
+                            ItemArea[i] = true;
+                        }
+                        else
+                        {
+                            ItemArea[i] = false;
+                            CreateNum++;
+                        }
                     }
                 }
             }
@@ -227,10 +248,11 @@ public class CreateManager : MonoBehaviour
         }
         else if (GM.Playtime >= veryhardTime && isHarderActed_Second == false)
         {
-            IntervalSetting_Obstacle_Upper -= IntervalSetting_Obstacle_Upper_Delta;
-            IntervalSetting_Obstacle_Down -= IntervalSetting_Obstacle_Down_Delta;
+            IntervalSetting_Obstacle_Upper --;
+            IntervalSetting_Obstacle_Down --;
             isintervalTimeResetting = true;
             isHarderActed_Second = true;
+            createNum_limit++;
         }
         Invoke("isintervalTimeResetting_Reset", 2.0f);
     }

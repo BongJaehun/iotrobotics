@@ -8,7 +8,7 @@ public class Item_veryhard : MonoBehaviour
 
     void Start()
     {
-        int i = Random.Range(1, 3);
+        int i = Random.Range(1, 5);
         if (i == 1)
         {
             itemID = Random.Range(1, 4);
