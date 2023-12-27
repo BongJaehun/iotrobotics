@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviour
             curWeight = 1.0f;
             return;
         }
-        curWeight += MaxWeightByTime / (WeightIncreaseMaxTime *300)*Time.deltaTime;
+        curWeight += MaxWeightByTime / (WeightIncreaseMaxTime)*Time.deltaTime;
     }
 
     void Dead()
