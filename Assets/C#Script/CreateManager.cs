@@ -123,6 +123,7 @@ public class CreateManager : MonoBehaviour
                         {
                             ItemArea[NotCreateStart - 1] = true;
                             CreateNum--;
+                            Debug.Log("Max");
                         }
                     }
                     else
@@ -136,6 +137,13 @@ public class CreateManager : MonoBehaviour
                             ItemArea[i] = false;
                             CreateNum++;
                         }
+
+                        if (NotCreateStart == 9)
+                        {
+                            ItemArea[NotCreateStart - 2] = true;
+                            CreateNum--;
+                            Debug.Log("Max");
+                        }
                     }
                 }
             }
@@ -148,7 +156,7 @@ public class CreateManager : MonoBehaviour
                     rigid.AddForce(Vector2.left * Force, ForceMode2D.Impulse);
                 }
             }
-            //Debug.Log(CreateNum);
+            Debug.Log("CreateNum: "+CreateNum);
             CreateNum = 0;
             interval_Obstacle = 0;
             RandomObstacleAreaUp = 0;
