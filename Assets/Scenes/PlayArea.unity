@@ -1949,7 +1949,7 @@ MonoBehaviour:
   IntervalSetting_Obstacle_Upper: 15
   IntervalSetting_Obstacle_Down: 10
   IntervalSetting_Obstacle_Upper_Delta: 3
-  IntervalSetting_Obstacle_Down_Delta: 2
+  IntervalSetting_Obstacle_Down_Delta: 1
   RandomObstacleAreaUp: 0
   RandomObstacleAreaDown: 0
   hardTime: 30

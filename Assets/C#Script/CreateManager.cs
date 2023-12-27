@@ -73,6 +73,7 @@ public class CreateManager : MonoBehaviour
 
         if (player.isDead == false)
         {
+            /*
             CSM.CalculationStart();
             BoundaryUp = ObstacleAreaSetting(CSM.upperPosition);
             BoundaryDown = ObstacleAreaSetting(CSM.downPosition);
@@ -144,6 +145,36 @@ public class CreateManager : MonoBehaviour
                             CreateNum--;
                             Debug.Log("Max");
                         }
+                    }
+                }
+            }
+            */
+            int Number = Random.Range(1, 9);
+            if (GM.Level == 3 && isHarderActed_Second == true)
+            {
+                for(int i=0; i<10; i++)
+                {
+                    if(i == Number-1 || i == Number)
+                    {
+                        ItemArea[i] = true;
+                    }
+                    else
+                    {
+                        ItemArea[i] = false;
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    if (i == Number - 1 || i == Number || i == Number + 1)
+                    {
+                        ItemArea[i] = true;
+                    }
+                    else
+                    {
+                        ItemArea[i] = false;
                     }
                 }
             }
@@ -257,7 +288,7 @@ public class CreateManager : MonoBehaviour
         else if (GM.Playtime >= veryhardTime && isHarderActed_Second == false)
         {
             IntervalSetting_Obstacle_Upper --;
-            IntervalSetting_Obstacle_Down --;
+            //IntervalSetting_Obstacle_Down --;
             isintervalTimeResetting = true;
             isHarderActed_Second = true;
             createNum_limit++;

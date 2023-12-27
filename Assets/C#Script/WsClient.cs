@@ -44,7 +44,7 @@ public class WsClient : MonoBehaviour
 
     void Call(object sender, MessageEventArgs e)
     {
-        Debug.Log("林家 :  " + ((WebSocket)sender).Url + ", 单捞磐 : " + e.Data);
+        //Debug.Log("林家 :  " + ((WebSocket)sender).Url + ", 单捞磐 : " + e.Data);
 
         if (e.Data[0] == 'p')
         {
