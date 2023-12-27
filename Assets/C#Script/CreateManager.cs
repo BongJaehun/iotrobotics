@@ -266,6 +266,8 @@ public class CreateManager : MonoBehaviour
         {
             if (isFinishCreate == false)
             {
+                player.StateInitialization();
+                player.Invincibility_Off();
                 GM.GameClear = true;
                 isFinishCreate = true;
                 GameObject finish = Instantiate(Finish, CreateArea[0].transform.position, transform.rotation);
